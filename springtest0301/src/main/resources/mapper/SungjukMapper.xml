@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+<mapper namespace="com.mysite.springtest0301.SungjukMapper">
+
+	<select id="getSungjukList" resultType="SungjukVO">
+		select * from sungjuk order by hakbun
+	</select>
+	
+	<select id="getSungjukList2" resultType="HashMap">
+		select hakbun, irum, grade from sungjuk order by hakbun
+	</select>
+	
+	<select id="getSungjukList3" resultType="SungjukDTO">
+		select hakbun, irum, grade from sungjuk order by hakbun
+	</select>
+	
+	<select id="getSungjuk" parameterType="String" resultType="SungjukVO">
+		select * from sungjuk where hakbun=#{hakbun}
+	</select>
+	
+	<select id="getSungjuk2" parameterType="HashMap" resultType="SungjukVO">
+		select * from sungjuk where hakbun=#{hakbun} and irum=#{irum}
+	</select>
+	
+	<select id="getSungjukData1" parameterType="String" resultType="HashMap">
+		select hakbun, irum, grade from sungjuk where hakbun=#{hakbun}
+	</select>
+	
+	<select id="getSungjukData2" parameterType="String" resultType="SungjukDTO">
+		select hakbun, irum, grade from sungjuk where hakbun=#{hakbun}
+	</select>
+	
+	<insert id="insertSungjuk" parameterType="SungjukVO">
+		insert into sungjuk values (#{hakbun}, #{irum}, #{kor}, #{eng}, #{math}, #{tot}, #{avg}, #{grade})
+	</insert>
+	
+	<update id="updateSungjuk" parameterType="SungjukVO">
+		update sungjuk set kor=#{kor}, eng=#{eng}, math=#{math}, tot=#{tot}, avg=#{avg}, grade=#{grade} 
+		where hakbun=#{hakbun}
+	</update>
+	
+	<delete id="deleteSungjuk" parameterType="String">
+		delete from sungjuk where hakbun=#{hakbun}
+	</delete>
+	
+	<select id="countSungjuk" resultType="int">
+		select count(*) from sungjuk
+	</select>
+
+</mapper>
