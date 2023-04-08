@@ -1,0 +1,8 @@
+spring:
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp  
+custom:
+  imagepath: "file:///C:/Project/imgs/"
+  connectPath: "imgs/**"
