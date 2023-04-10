@@ -1,0 +1,24 @@
+<table border="1">
+	<thead>
+		<tr>
+			<th>제목</th>
+			<th>작성일시</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+	<!--  th : 타임리프 템플릿 엔진이 사용하는 속성 -->
+	<!-- each : ${questionList} 이 가지고 있는 값의 개수만큼 반복-->
+		<tr th:each = "question : ${questionList}">
+			<!--  th:text=값 : 해당 엘리먼트의 텍스트로 값을 출력 -->
+			<!-- <td th:text = "${question.subject}"></td> -->
+			<!--  <td> [[${question.subject}]] </td> -->
+			
+			<td>
+				<a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+			</td>
+			<td th:text = "${question.createDate}"></td>
+		</tr>
+	</tbody>
+	
+</table>
