@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,6 +15,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration	//스프링의 환경설정 파일임을 의미하는 어노테이션
 @EnableWebSecurity	// 모든 요청 URL이 스프링 시큐리티의 제어를 받도록 만드는 어노테이션
+@EnableMethodSecurity(prePostEnabled = true)	// 어노테이션을 기반으로 보안이 동작하도록 설정
 public class SecurityConfig {
 	@Bean	//아래의 코드로 Bean 객체를 생성
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

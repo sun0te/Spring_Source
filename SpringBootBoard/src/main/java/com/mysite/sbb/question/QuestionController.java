@@ -1,8 +1,7 @@
 package com.mysite.sbb.question;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,6 +37,7 @@ public class QuestionController {
         return "question_list";
     }
 	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) {
         Question question = this.questionService.getQuestion(id);
@@ -45,11 +45,13 @@ public class QuestionController {
         return "question_detail";
     }
 	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/create")
     public String questionCreate(QuestionForm questionForm) {
         return "question_form";
     }
 	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/create")
 	// @Valid : QuestionForm의 @NotEmpty, @Size 등으로 설정한 검증 기능이 동작
 	// BindingResult : @Valid 애너테이션으로 인해 검증이 수행된 결과를 의미하는 객체. 항상 @Valid 매개변수 바로 뒤에 위치

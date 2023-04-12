@@ -1,5 +1,6 @@
 package com.mysite.sbb.answer;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +22,7 @@ public class AnswerController {
     private final QuestionService questionService;
     private final AnswerService answerService;
 
+    @PreAuthorize("isAuthenticated()") // 메소드 호출 이전 이후에 권한
     @PostMapping("/create/{id}")
     public String createAnswer(Model model, @PathVariable("id") Integer id, 
     		@Valid AnswerForm answerForm, BindingResult bindingResult) {
