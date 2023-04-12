@@ -21,6 +21,10 @@
 	            	<!-- th:href :  타임리프에서 링크의 주소 연결시 사용. url 주소는 @{와 } 사이에 기술한다. -->
 	            	<!-- | : 일반 문자열이나 자바 객체 값을 문자열로 연결할때 사용 -->
 	                <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+	                <span class="text-danger small ms-2"
+	                	th:if="${#lists.size(question.answerList) > 0}"
+	                	th:text="${#lists.size(question.answerList)}">
+	                </span>
 	            </td>
 	            <!-- #temporals.format(날짜객체, 날짜포맷) - 날짜객체를 날짜포맷에 맞게 변환 -->
 	            <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
